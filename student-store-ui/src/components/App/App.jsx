@@ -22,6 +22,7 @@ function App() {
   const [isCheckingOut, setIsCheckingOut] = useState(false);
   const [error, setError] = useState(null);
   const [order, setOrder] = useState(null);
+  // const baseUrl = "http://localhost:3000";
 
   // Toggles sidebar
   const toggleSidebar = () => setSidebarOpen((isOpen) => !isOpen);
@@ -36,8 +37,96 @@ function App() {
     setSearchInputValue(event.target.value);
   };
 
+  // const handleOnCheckout = async () => {
+  //   setIsCheckingOut(true);
+  //   try {
+  //     const orderData = {
+  //       customer_id: parseInt(userInfo.name),
+  //       total_price: 0,
+  //       status:"pending",
+  //       order_items: Object.keys(cart).map((productId) =>({
+  //         product_id: parseInt(productId),
+  //         price: 10,
+  //         quantity: cart[productId]
+  //       }))
+  //     };
+  //     const response = await axios.post("http://localhost:3000/orders", orderData);
+  //     console.log(response.data);
+
+  //     if (response.status === 201) {
+  //       setOrder(response.data);
+  //       setCart({});
+  //       setError(null);
+  //     }else {
+  //       setError("Failed to create order :(");
+  //     }
+  //   } catch (error) {
+  //     console.log("here!")
+  //     setError(error.response ? error.response.data.error: error.message);
+  //   } finally {
+  //     setIsCheckingOut(false);
+  //   }
+  // };
+
+
+
+
   const handleOnCheckout = async () => {
-  }
+    setIsCheckingOut(true);
+
+    try {
+      const orderItems = Object.keys(cart).map((productId) => ({
+        product_id: parseInt(productId),
+        quantity: cart[productId],
+        // price: 0
+      }));
+
+      const orderData = {
+        customer_id: parseInt(userInfo.name), // Placeholder; you'll need to handle customer identification
+        total_price: getTotalItemsInCart(cart), // Calculate the total price
+        status: "pending",
+        order_items: orderItems,
+      };
+
+      const res = await axios.post("http://localhost:3000/orders", orderData);
+      const data = res.data;
+
+      const updateOrder = {
+        status: "completed"
+      };
+      const response3 = await axios.put(`http://localhost:3000/orders/${data.order_id}`, updateOrder);
+      const response4 = await axios.get(`http://localhost:3000/orders/${data.order_id}`)
+      const data2 = response4.data;
+      if (data2) {
+        setOrder(data2);
+        setCart({});
+      } else {
+        setError("Error checking out.");
+      }
+
+    } catch (err) {
+      console.error(err.response.data);
+      setError("Error checking out.");
+    } finally {
+      setIsCheckingOut(false);
+    }
+  };
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      setIsFetching(true);
+      try {
+        const response = await axios.get("http://localhost:3000/products");
+        setProducts (response.data);
+        setError(null);
+      } catch (error){
+        setError(error.response ? error.response.data.error : error.message);
+      } finally  {
+        setIsFetching (false);
+      }
+    };
+    fetchProducts();
+  }, []);
 
 
   return (
@@ -116,4 +205,3 @@ function App() {
 }
 
 export default App;
- 
