@@ -37,40 +37,6 @@ function App() {
     setSearchInputValue(event.target.value);
   };
 
-  // const handleOnCheckout = async () => {
-  //   setIsCheckingOut(true);
-  //   try {
-  //     const orderData = {
-  //       customer_id: parseInt(userInfo.name),
-  //       total_price: 0,
-  //       status:"pending",
-  //       order_items: Object.keys(cart).map((productId) =>({
-  //         product_id: parseInt(productId),
-  //         price: 10,
-  //         quantity: cart[productId]
-  //       }))
-  //     };
-  //     const response = await axios.post("http://localhost:3000/orders", orderData);
-  //     console.log(response.data);
-
-  //     if (response.status === 201) {
-  //       setOrder(response.data);
-  //       setCart({});
-  //       setError(null);
-  //     }else {
-  //       setError("Failed to create order :(");
-  //     }
-  //   } catch (error) {
-  //     console.log("here!")
-  //     setError(error.response ? error.response.data.error: error.message);
-  //   } finally {
-  //     setIsCheckingOut(false);
-  //   }
-  // };
-
-
-
-
   const handleOnCheckout = async () => {
     setIsCheckingOut(true);
 
@@ -78,12 +44,11 @@ function App() {
       const orderItems = Object.keys(cart).map((productId) => ({
         product_id: parseInt(productId),
         quantity: cart[productId],
-        // price: 0
       }));
 
       const orderData = {
-        customer_id: parseInt(userInfo.name), // Placeholder; you'll need to handle customer identification
-        total_price: getTotalItemsInCart(cart), // Calculate the total price
+        customer_id: parseInt(userInfo.name), 
+        total_price: getTotalItemsInCart(cart), 
         status: "pending",
         order_items: orderItems,
       };
