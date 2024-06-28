@@ -54,8 +54,7 @@ Deployed Application (optional): N/A
 
 ### Walkthrough Video
 
-`https://www.loom.com/share/a5f0158c62d2400ebaa470cc2530b8bf?sid=33724176-d133-4dc9-a7c9-43069e6c2fcd
-`
+`https://www.loom.com/share/a5f0158c62d2400ebaa470cc2530b8bf?sid=33724176-d133-4dc9-a7c9-43069e6c2fcd`
 
 ### Reflection
 
