@@ -1,5 +1,3 @@
-📝 `NOTE` Use this template to initialize the contents of a README.md file for your application. As you work on your assignment over the course of the week, update the required or stretch features lists to indicate which features you have completed by changing `[ ]` to `[x]`. (🚫 Remove this paragraph before submitting your assignment.)
-
 ## Unit Assignment: Student Store
 
 Submitted by: **LUCKY BEULLA MUHOZA**
@@ -56,9 +54,7 @@ Deployed Application (optional): N/A
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after adding walkthrough video)
-
-`ADD_EMBEDDED_CODE_HERE`
+`https://www.loom.com/share/a5f0158c62d2400ebaa470cc2530b8bf?sid=33724176-d133-4dc9-a7c9-43069e6c2fcd`
 
 ### Reflection
 
